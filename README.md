@@ -1,9 +1,10 @@
-# bam2nx
+# Tomography data conversion tools
 
-This package converts .h5 data collected at Bessy's BAMline synchrotron beamline to .nx format compatible with ESRF's tomography reconstruction software Tomwer (https://tomotools.gitlab-pages.esrf.fr/tomwer). \
-The .nx file created follows guidelines described here: https://tomotools.gitlab-pages.esrf.fr/nxtomo/tutorials/create_from_scratch.html \
+These packages convert .h5 data collected at various synchrotron beamlines to data in .nx format, which is compatible with ESRF's tomography reconstruction software Tomwer (https://tomotools.gitlab-pages.esrf.fr/tomwer). \
+These scripts create .nx files following guidelines described here: https://tomotools.gitlab-pages.esrf.fr/nxtomo/tutorials/create_from_scratch.html \
 
 ### How to use (linux) ###
-1. Download the .py file and requirements.txt files
-2. Navigate to wherever you saved the requirements.txt file and install required packages: pip install -r requirements.txt 
-3. Navigate to wherever you saved the 2nx script and run the script: python bam2nx.py 
+1. Download the .py file and requirements.txt file, to a path of your choice.
+2. Navigate to this path.
+3. Install required packages: pip install -r requirements.txt 
+4. Run the script: python ******.py 
