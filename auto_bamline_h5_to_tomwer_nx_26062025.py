@@ -17,6 +17,7 @@ Created on Tue Mar 25 12:37:24 2025
 #                                                       #  
 # INPUT: (1) User-selected .h5 file from BESSY BAMline  #
 #        (2) User-selected output directory             #
+#        (3) Binning factor                             #
 # OUTPUT: Version of input data in NeXus (.nx) format   #
 #                                                       #
 #########################################################
@@ -184,11 +185,6 @@ ctime = datetime.now()
 print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Acceleration radiographs identified')
 
 
-## Find number of accelleration radios, k
-#for i in range(2, len(samplew_radio), 1):
-#    if samplew_radio[i]>accspan:
-#        n_acc = i-1
-#        break
 
 n_allradio = n - no_flats[0][0] - no_flats[1][0] # Number of projections (number of total projections minus flats, since bam doesnt take darks)
 n_acc = n_allradio%100 
@@ -235,8 +231,6 @@ print('Number of projections: ' + str(len(binned_projs)))
 # Reformatting projections
 radiosA = binned_projs[:int(no_bins/2)]
 radiosB = binned_projs[int(no_bins/2):]
-#radiosA = np.array(data[no_flats[0][0]+n_acc:no_flats[0][0]+n_acc+int(n_truradio/2)]) # first half radios dataset with first projection
-#radiosB = np.array(data[no_flats[0][0]+n_acc+int(n_truradio/2):no_flats[0][0]+n_acc+int(n_truradio)]) # second half radios dataset with first projection
 ctime = datetime.now()
 print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Projections reformatted')
 print('first half of radios: ' + str(len(radiosA)))
