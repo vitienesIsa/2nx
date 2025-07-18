@@ -8,9 +8,10 @@ Created on Tue Mar 25 12:37:24 2025
 
 # VERSION 1
 
-# Developed in the Zaslansky lab of the Department of Operative, 
-# Preventive and Pediatric Dentistry at Charité – Universitätsmedizin 
-# Berlin, with funding from the DFG (FOR5657).
+# Developed in 06.2025 by Isabela Vitienes, in the Zaslansky lab 
+# of the Department of Operative, Preventive and Pediatric Dentistry 
+# at Charité – Universitätsmedizin Berlin, with funding from the 
+# DFG (FOR5657).
 
 
 ##################################################################
