@@ -10,5 +10,6 @@ Currently there are two scripts, supporting conversion of data either from Bessy
 3. Install required packages: *pip install -r requirements.txt* 
 4. Run the script: *python bam2nx.py*  or  *python sesame2nx.py* 
 
+---
 
 Developed in 06.2025 by Isabela Vitienes, in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
