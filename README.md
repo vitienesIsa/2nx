@@ -1,6 +1,6 @@
 # Tomography data conversion tools
 
-These scripts convert .h5 data collected at various synchrotron beamlines to data in .nx format, which is compatible with ESRF's tomography reconstruction software Tomwer (https://tomotools.gitlab-pages.esrf.fr/tomwer). \
+These scripts convert data collected at various synchrotron beamlines to data in .nx format, which is compatible with ESRF's tomography reconstruction software Tomwer (https://tomotools.gitlab-pages.esrf.fr/tomwer). \
 These scripts create .nx files following guidelines described here: https://tomotools.gitlab-pages.esrf.fr/nxtomo/tutorials/create_from_scratch.html \
 Currently there are two scripts, supporting conversion of data either from Bessy's BAMline or Sesame's BEATS beamline. 
 
