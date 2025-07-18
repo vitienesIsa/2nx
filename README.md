@@ -11,4 +11,4 @@ Currently there are two scripts, supporting conversion of data either from Bessy
 4. Run the script: python ******.py 
 
 
-Developed in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
+Developed in 06.2025 by Isabela Vitienes, in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
