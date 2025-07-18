@@ -9,3 +9,6 @@ Currently there are two scripts, supporting conversion of data either from Bessy
 2. Navigate to this path.
 3. Install required packages: pip install -r requirements.txt 
 4. Run the script: python ******.py 
+
+
+Developed in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
