@@ -6,6 +6,12 @@ Created on Tue Mar 25 12:37:24 2025
 @author: adminisa
 """
 
+# VERSION 1.1
+
+# Developed in the Zaslansky lab of the Department of Operative, 
+# Preventive and Pediatric Dentistry at Charité – Universitätsmedizin 
+# Berlin, with funding from the DFG (FOR5657).
+
 
 ##################################################################
 # This code converts tomography datasets collected at Sesame     #
