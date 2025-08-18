@@ -1,4 +1,5 @@
 numpy
 h5py
 nxtomo
+hdf5plugin
 tqdm
