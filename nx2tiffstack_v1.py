@@ -40,6 +40,7 @@ import itertools
 import tifffile as tif
 from datetime import datetime
 import h5py
+import hdf5plugin
 
 
 
