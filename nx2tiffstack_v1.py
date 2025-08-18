@@ -114,7 +114,7 @@ for i in range(z):
     
     path = op_f + '/' + filename + '_' + slcno + '.tif'
     
-    tif.imwrite(path, data[i].astype(np.float16))
+    tif.imwrite(path, data[i].astype(np.uint8))
 
 
 print('Process complete.')
