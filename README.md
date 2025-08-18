@@ -5,11 +5,11 @@ These scripts create .nx files following guidelines described here: https://tomo
 Currently there are two scripts, supporting conversion of data either from Bessy's BAMline or Sesame's BEATS beamline. 
 
 ### How to use (linux) ###
-1. Download the .py file that you need (depending on where your data was collected, Bessy or Sesame) and the requirements.txt file, to a path of your choice.
+1. Download the .py file that you need and the requirements.txt file, to a path of your choice.
 2. Navigate to this path.
 3. Install required packages: *pip install -r requirements.txt* 
-4. Run the script: *python bam2nx.py*  or  *python sesame2nx.py* 
+4. Execute the python script with: *python XXXX*  or  *python XXXX* replacing XXXX with the name of the script (including .py tail). 
 
 ---
 
-Developed in 06.2025 by Isabela Vitienes, in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
+Developed in 06-08.2025 by Isabela Vitienes, in the Zaslansky lab of the Department of Operative, Preventive and Pediatric Dentistry at Charité – Universitätsmedizin Berlin, with funding from the DFG (FOR5657). 
