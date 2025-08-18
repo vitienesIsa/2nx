@@ -4,6 +4,8 @@ These scripts convert data collected at various synchrotron beamlines to data in
 These scripts create .nx files following guidelines described here: https://tomotools.gitlab-pages.esrf.fr/nxtomo/tutorials/create_from_scratch.html \
 Currently there are two scripts, supporting conversion of data either from Bessy's BAMline or Sesame's BEATS beamline. 
 
+Another script, nx2tiffstack, can be used to convert .nx files of aligned holotomography projections into a tiff stack, for subsequent reconstruction in platforms other than pynx. 
+
 ### How to use (linux) ###
 1. Download the .py file that you need and the requirements.txt file, to a path of your choice.
 2. Navigate to this path.
