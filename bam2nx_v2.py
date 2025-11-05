@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-# VERSION 1
+# VERSION 2
 
 # Developed in 06.2025 by Isabela Vitienes, in the Zaslansky lab 
 # of the Department of Operative, Preventive and Pediatric Dentistry 
@@ -127,50 +127,22 @@ dd_ndarraytimestep = np.array(np.diff(ndarraytimestamp)) # timestamp increments
 mode = stat.mode(dd_ndarraytimestep) # most common timestamp increment, assume to be increment once a stable velocity is achieved
 
 
-# Find locations (in terms of indices of data variable) of flats
-k = []
-for i in range(len(dd_ndarraytimestep)):
-    if dd_ndarraytimestep[i] > mode + 3:
-        k = k + [i]
-ctime = datetime.now()
-print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Flats located')
-print('Index locations of flats: ' + str(k))
-
-
-# Extract and reformat flats
-# Note: .nx has has placeholding for two sets of flats. If only one taken, a copy of this one used in place of second set.
+# Extract flats. For bessy, 20 flats at beginning and end of data.
 stop_spinner = threading.Event()
 spinner_thread = threading.Thread(target=spinner_task, args=(stop_spinner,))
 spinner_thread.start()
-print("Extracting and reformatting flats... ", end="", flush=True)
+print("Extracting flats... ", end="", flush=True)
 # =====================================
-if len(k) == 1: # only one set of flats
-    no_flats = [[k[0] + 1],[]]
-    if k[0] < 100: # flats taken before radios (flat1_stack). assume there will never be more than 100 flats, or less than 200 radios
-        f1_end_ind = k[0] + 1
-        flats1_stack = np.array(data[:f1_end_ind])
-        flats2_stack = flats1_stack # since no flats taken after radios
-        k = k[0] + [0] # adjust k to reflect that there are zero flats taken after radios
-    elif k[0] > 100: # flats taken after radios (flat2_stats)
-        f2_start_ind = k[0] + 1
-        flats2_stack = np.array(data[f2_start_ind:])
-        flats1_stack = flats2_stack # since no flats taken before radios
-        k = [0] + k[0] # adjust k to reflect that there are zero flats taken before radios
-if len(k) == 2: # two sets of flats, one before and one after radios
-    no_flats = [[k[0] + 1], [n - k[1] - 1]]
-    f1_end_ind = k[0] + 1
-    f2_start_ind = k[1] + 1
-    flats1_stack = np.array(data[:f1_end_ind])
-    flats2_stack = np.array(data[f2_start_ind:])
+flats1_stack = np.array(data[:20])
+flats2_stack = np.array(data[n-19:])
 # =====================================
 stop_spinner.set()
 spinner_thread.join()
 ctime = datetime.now()
+print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Flats extracted')
 
-print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Flats extracted and reformatted')
 
-
-# BAM doesnt produce darks so we just use 'zero' arrays
+# BAM doesnt produce darks so we create some
 darks_stack = np.array(np.zeros_like(flats1_stack))+100 
 ctime = datetime.now()
 print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Darks created')
@@ -179,7 +151,10 @@ print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Darks created')
 # Identify and remove accelerating radios
 # In bam, motor initially accelerates until reaching target speed, and radios taken during this acceleration must be removed 
 # Look to 'SAMPLE_W' data, which gives the rotation angle. 
-samplew = np.array(fbam['/entry/instrument/NDAttributes/SAMPLE_W']) # rotation angles, all
+if 'SAMPLE_W' in fbam['/entry/instrument/NDAttributes']:
+    samplew = np.array(fbam['/entry/instrument/NDAttributes/SAMPLE_W']) # rotation angles, all
+elif 'CT_MICOS_W' in fbam['/entry/instrument/NDAttributes']:
+    samplew = np.array(fbam['/entry/instrument/NDAttributes/CT_MICOS_W'])
 samplew_radio = samplew[len(flats1_stack):-len(flats2_stack)]
 scanspan = int(10*(np.floor(np.max(samplew_radio)/10))) # whether 180 or 360 scan
 accspan = abs((np.max(samplew) - np.min(samplew))-scanspan) # max scan angle of acceleration tomos
@@ -188,12 +163,12 @@ print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Acceleration radiographs identifie
 
 
 
-n_allradio = n - no_flats[0][0] - no_flats[1][0] # Number of projections (number of total projections minus flats, since bam doesnt take darks)
+n_allradio = n - 40 # Number of projections (number of total projections minus flats, since bam doesnt take darks)
 n_acc = n_allradio%100 
 n_truradio = n_allradio - n_acc # number of 'true', non-accelerating projections. Should be a 'nice' number i.e. multiple of 100.
 print('Number of all projections (all radiographs excluding flats and darks): ' + str(n_allradio))
 print('Number of final projections (after removing accelleration projections): ' + str(n_truradio))
-shift2tru = no_flats[0][0]+n_acc
+shift2tru = 20+n_acc
 
 # Extract 'true' projections and simultaneously bin
 if n_truradio%proj_bin_size == 0:
