@@ -286,8 +286,7 @@ print('len of rotation angles: ' + str(len(rotation_angle)))
 
 assert len(rotation_angle) == len(new_data)
 ureg = pint.UnitRegistry()
-rotation_angle_ureg = rotation_angle*ureg.degree
-new_nx.sample.rotation_angle = rotation_angle_ureg
+new_nx.sample.rotation_angle = rotation_angle*ureg.degree
 
 
 
@@ -296,14 +295,14 @@ new_nx.instrument.detector.field_of_view = str(scan_type) # Need to find out how
 
 # Pixel size
 pixel_size = fbam['entry/instrument/NDAttributes/CT_Pixelsize'][()][0] # in units of microns
-new_nx.instrument.detector.x_pixel_size = new_nx.instrument.detector.y_pixel_size = pixel_size*1e-6  # pixel size in SI: meter
+new_nx.instrument.detector.x_pixel_size = new_nx.instrument.detector.y_pixel_size = pixel_size*ureg.micrometer
 
 # Energy and detector distance, needed for phase retrieval
 energy = fbam['entry/instrument/NDAttributes/DMM_Energy'][()][0]
-new_nx.energy = energy
+new_nx.energy = energy*ureg.keV
 
 detector_distance = (fbam['entry/instrument/NDAttributes/CT-Kamera-Z'][()][0]+25) # in units of mm
-new_nx.instrument.detector.distance = detector_distance*1e-4 # in units of m
+new_nx.instrument.detector.distance = detector_distance*1e-4*ureg.meter
 #new_nx.instrument.sample_detector_distance = detector_distance*1e-4 # in units of m
 
 ctime = datetime.now()
