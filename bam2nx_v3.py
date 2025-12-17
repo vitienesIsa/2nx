@@ -99,6 +99,13 @@ proj_bin_size = simpledialog.askinteger(title="Projection binning", prompt="How 
 print('Every ' + str(proj_bin_size) + ' projections will be averaged.')
 
 
+# Prompt user to input scan type, i.e. full or half acquisition.
+# Ideally will be a factor of the total number of projections. Otherwise, the last averaged set will be smaller than the rest.
+root = tk.Tk()
+root.withdraw()
+scan_type = simpledialog.askstring(title="Scan type", prompt="Full or Half acquisition?")
+print('Scan type: ' + scan_type + ' acquisition.')
+
 
 ###############################################################################
 # computation #################################################################

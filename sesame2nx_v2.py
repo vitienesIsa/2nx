@@ -23,6 +23,7 @@
 #        (3) Pixel size, in um                          #
 #        (4) Beam energy, in keV                        #
 #        (5) Binning factor                             #
+#        (6) Scan type i.e. full or half acquisition    #
 # OUTPUT: Version of input data in NeXus (.nx) format   #
 #                                                       #
 #########################################################
@@ -83,7 +84,6 @@ z, x, y = fbam['exchange/data'].shape
 print('Your dataset has ' + str(z-1) + ' projections.')
 print('Each projection is ' + str(x) + ' x ' + str(y) + ' pixels.')
 
-scan_type = 'full'
 
 # Prompt user to select output directory
 root = tk.Tk()
@@ -105,6 +105,13 @@ root.withdraw()
 energy = simpledialog.askinteger(title="Energy", prompt="Specify beam energy in units of keV")
 energy = float(energy)
 print('Beam energy: ' + str(energy) + ' keV')
+
+# Prompt user to input scan type, i.e. full or half acquisition. 
+# Ideally will be a factor of the total number of projections. Otherwise, the last averaged set will be smaller than the rest. 
+root = tk.Tk()
+root.withdraw()
+scan_type = simpledialog.askstring(title="Scan type", prompt="Full or Half acquisition?")
+print('Scan type: ' + scan_type + ' acquisition.')
 
 
 # Prompt user to input binning factor, i.e. number of projections to average. 
