@@ -7,8 +7,8 @@ Currently the script supports conversion of data either from Bessy's BAMline (pr
 ### System requirements ###
 It can be run on minimal Linux or Windows systems.
 It requires Python, and has been tested using Python 3.12 and 3.13. \
-File conversion requires \
- $$R_{total} = \frac{(60 + n_{bin}) \cdot x \cdot y \cdot \frac{b}{8}}{1024^2} + 500 \text{ MB}$$\ 
+File conversion requires
+ $$R_{total} = \frac{(60 + n_{bin}) \cdot x \cdot y \cdot \frac{b}{8}}{1024^2} + 500 \text{ MB}$$ \ 
  where \
 - $x, y$ = slice dimensions in pixels
 - $b$ = bit depth (8, 16, or 32)
