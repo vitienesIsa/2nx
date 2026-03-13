@@ -7,11 +7,10 @@ Currently the script supports conversion of data either from Bessy's BAMline (pr
 ### System requirements ###
 It can be run on minimal Linux or Windows systems.
 It requires Python, and has been tested using Python 3.12 and 3.13. \
-File conversion requires
- $$R_{total} = \frac{(60 + n_{bin}) \cdot x \cdot y \cdot \frac{b}{8}}{1024^2} + 500 \text{ MB}$$ where
+File conversion requires $$R_{total} = \frac{(60 + n_{bin}) \cdot x \cdot y \cdot \frac{b}{8}}{1024^2} + 500 \text{ MB}$$ where
 - $x, y$ = slice dimensions in pixels
 - $b$ = bit depth (8, 16, or 32)
-- $n_{bin}$ = binning factor (number of projections averaged per chunk) \
+- $n_{bin}$ = binning factor (number of projections averaged per chunk) 
 
 ### How to use (linux) ###
 1. Download the *h5tonx.py* and *requirements.txt* file, to a path of your choice and navigate to this path.
