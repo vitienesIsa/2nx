@@ -3,6 +3,7 @@
 The  *h5tonx* script converts data collected at various synchrotron beamlines to data in .nx format, which is compatible with ESRF's tomography reconstruction software Tomwer (https://tomotools.gitlab-pages.esrf.fr/tomwer). \
 The created .nx output file follows structure guidelines described here: https://tomotools.gitlab-pages.esrf.fr/nxtomo/tutorials/create_from_scratch.html \
 Currently the script supports conversion of data either from Bessy's BAMline (pre and post 2022) or Sesame's BEATS beamline.
+The script includes the option to bin the data - average every certain number of projections. For no binning, set number of projections to average = 1 when prompted.
 
 ### System requirements ###
 It can be run on minimal Linux or Windows systems.
@@ -10,7 +11,7 @@ It requires Python, and has been tested using Python 3.12 and 3.13. \
 File conversion requires $$R_{total} = \frac{(60 + n_{bin}) \cdot x \cdot y \cdot \frac{b}{8}}{1024^2} + 500 \text{ MB}$$ of RAM, where
 - $x, y$ = slice dimensions in pixels
 - $b$ = bit depth (8, 16, or 32)
-- $n_{bin}$ = binning factor (number of projections averaged per chunk) 
+- $n_{bin}$ = binning factor (number of projections averaged) 
 
 ### How to use (linux) ###
 1. Download the *h5tonx.py* and *requirements.txt* file, to a path of your choice and navigate to this path.
