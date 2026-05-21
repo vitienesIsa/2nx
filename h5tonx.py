@@ -5,6 +5,8 @@
 #                                                                #
 # MEMORY-EFFICIENT: Data is written chunk-by-chunk so the full   #
 # dataset is never held in RAM.                                  #
+#
+# VERSION 1.1                                                    3
 ##################################################################
 
 #########################################################
@@ -142,12 +144,19 @@ if source == 'BAM':
     ctime = datetime.now()
     print(str(ctime.strftime('%Hh:%Mm:%Ss')) + ': Darks created')
 
-    # Identify and remove accelerating projections
-    if 'SAMPLE_W' in fbam['/entry/instrument/NDAttributes']:
-        samplew = np.array(fbam['/entry/instrument/NDAttributes/SAMPLE_W'])
-    elif 'CT_MICOS_W' in fbam['/entry/instrument/NDAttributes']:
-        samplew = np.array(fbam['/entry/instrument/NDAttributes/CT_MICOS_W'])
+    # Get rotation angles
+    possible_places = ['SAMPLE_W', 'CT_MICOS_W', 'SAMPLE_MICOS_W1', 'SAMPLE_MICOS_W1_new', 'SAMPLE_MICOS_W2', 'SAMPLE_MICOS_W2_new', 'SAMPLE_HUBER_W']
+    for place in possible_places:
+        if place in fbam['/entry/instrument/NDAttributes']:
+            possible_angles = np.array(fbam['/entry/instrument/NDAttributes/'+ place])
+            if np.all(possible_angles==0):
+                continue
+            else:
+                samplew = possible_angles
+                break
     samplew_radio = samplew[len(flats1_stack):-len(flats2_stack)]
+   
+    # Identify and remove accelerating projections
     scanspan = int(10 * (np.floor(np.max(samplew_radio) / 10)))
     accspan = abs((np.max(samplew) - np.min(samplew)) - scanspan)
     ctime = datetime.now()
